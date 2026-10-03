@@ -1,0 +1,14 @@
+todo
+
+- !! lateness time should be a little further down from official time 
+- !! option to show "on time" for arrival / departure time independently 
+- !! custom email address not showing 
+
+- add option for railcard under booking summary
+
+- in settings allow to toggle message "If your ticket type is (Super) Off-Peak Single, you can also travel at XXX"
+
+- on press main back btn = play fullscreen video of me opening the trainpal app, then going to my bookings, opening one booking. Then just as the loading shows, disappear the video away and show the actual UI.
+
+
+- booking confirmation emails

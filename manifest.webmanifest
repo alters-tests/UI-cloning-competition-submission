@@ -1,0 +1,18 @@
+{
+    "short_name": "TrainPal",
+    "name": "TrainPal",
+    "icons": [
+        {
+            "src": "./trainpal-icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "./trainpal-icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone"
+}

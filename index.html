@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrainPal</title>
+    <link rel="manifest" crossorigin="use-credentials" href="manifest.json" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-50..200"
+        rel="stylesheet">
+    <script src="state-manager.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" href="trainpal-icon-192.png" />
+</head>
+
+<body>
+    <div id="top-bar">
+        <div id="back-arrow">
+            <span class="material-symbols-rounded bold larger-icon">
+                chevron_left
+            </span>
+        </div>
+        <div id="cs-icon" class="icon onclick-load">
+            <span class="material-symbols-outlined">
+                headset_mic
+            </span>
+        </div>
+    </div>
+
+    <div id="h1-wrapper">
+        <div id="checkmark-circle">
+            <span class="material-symbols-rounded">
+                check
+            </span>
+        </div>
+        <h1>Tickets issued</h1>
+    </div>
+
+    <div id="promos">
+        <div id="invite-friends">
+            <span class="same-line" id="share-btn">
+                <img id="dollar-emoji" src="buck.jpg"></img>
+                <span class="bold">Invite friends and earn up to £3.00</span>
+                <span class="forward-arrow">
+                    <span class="material-symbols-rounded">
+                        chevron_right
+                    </span>
+                </span>
+            </span>
+        </div>
+        <span class="hr"></span>
+        <div id="trainpal-card">
+            <span class="same-line">
+                <span id="card-icon" class="icon">
+                    <span class="material-symbols-outlined">
+                        credit_card
+                    </span>
+                </span>
+                <span class="bold">Get a TrainPal Card for only £3.00</span>
+            </span>
+            <span>And enjoy 3% off every time you book a train for a whole month!</span>
+            <div id="col">
+                <button id="buy-btn">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="tabs">
+
+            <!-- TAB BAR -->
+            <div id="tab-bar">
+                <div id="outbound-tab" class="tab active">Outbound</div>
+                <div id="return-tab" class="tab">Return</div>
+            </div>
+
+            <!-- TAB CONTENTS -->
+            <div id="tab-contents">
+                <div class="tab-content active" data-tab="outbound">
+                    <h2 class="title">
+                        <span class="outbound-origin">London Euston</span>
+                        <div class="arr-wrapper">
+                            <img src="arrow.png" alt="→" width="18px">
+                        </div>
+                        <span class="outbound-destination">Stafford</span>
+                    </h2>
+                    <p class="small-space"></p>
+                    <span class="weak same-line">
+                        <span class="material-symbols-rounded">
+                            calendar_today
+                        </span>
+                        <span class="outbound-date">Thu, 11 Dec</span> <span class="super-weak separator">|</span> <span
+                            class="outbound-duration">1h 50m,</span> direct
+                    </span>
+                    <div class="ticket-btn-wrapper">
+                        <center>
+                            <button class="ticket-btn view-ticket">View outbound eTicket(s)</button>
+                            <div class="weak">
+                                <p class="margin-top">
+                                    How to use E-ticket(s)
+                                    <span class="thin material-symbols-rounded translate-down">
+                                        info
+                                    </span>
+                                </p>
+                            </div>
+                        </center>
+                    </div>
+
+                    <center>
+                        <div class="dotted-hr"></div>
+                    </center>
+
+                    <!-- Journey info -->
+                    <div class="same-line space-between">
+                        <h3 class="small-title">Journey Info</h3>
+                        <div class="link right" id="share-btn2">
+                            <div class="share-wrapper">
+                                <img src="share.jpg" alt="share" width="13px">
+                            </div>
+                            Share
+                        </div>
+                    </div>
+
+                    <!-- Departure time has changed -->
+                    <div class="time-changed onclick-load outbound-time-changed">
+                        <div class="red-text top">
+                            <span class="material-symbols-rounded warning">
+                                warning
+                            </span>
+                        </div>
+                        <div>
+                            <h4>Departure / Arrival time changed</h4>
+                            <div class="weak">
+                                The train time has changed. Please check the updated schedule.
+                            </div>
+                        </div>
+                        <div class="forward-arrow onclick-load">
+                            <span class="material-symbols-rounded smaller weak">
+                                chevron_right
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Station and facilities map button -->
+                    <div class="outline flex space-between same-line onclick-load margin">
+                        <div class="same-line">
+                            <span class="material-symbols-rounded bold">
+                                book_ribbon
+                            </span>
+                            <h4 class="bold">Station facilities & map</h4>
+                        </div>
+                        <span class="material-symbols-rounded smaller weak">
+                            chevron_right
+                        </span>
+                    </div>
+
+                    <!-- Travel times and actual journey info -->
+                    <div class="same-line" style="margin-top: 22px; margin-bottom: 15px;">
+                        <img src="times.jpg" alt="icon" width="17px" class="translate-down px1">
+                        <h4 class="bold outbound-journey-date">Thu, 18 Dec</h4>
+                    </div>
+
+                    <div class="journey-timeline">
+                        <div class="station-info">
+                            <div class="outbound-station">
+                                <h3>London Euston</h3>
+                                <div class="travel-details">
+                                    <span class="platform small" id="origin-platform">Plat. 12</span>
+                                    <span class="weak small">
+                                        <span class="material-symbols-rounded" style="transform: translateY(6px)">
+                                            train
+                                        </span>
+                                        Train to <span id="end-station">Crewe</span></span> <br>
+                                    <span class="weak small">
+                                        <span class="material-symbols-rounded" style="transform: translateY(5px);">
+                                            flight_class
+                                        </span>
+                                        <span id="seat-info">Standard, Sit in any available seat</span></span> <br>
+                                    <div class="amenities weak small">
+                                        <span class="material-symbols-rounded">
+                                            trip
+                                        </span>
+                                        <span class="material-symbols-rounded">
+                                            wifi
+                                        </span>
+                                        <span class="material-symbols-rounded" style="transform: scale(1.2);">
+                                            exposure_plus_1
+                                        </span>
+                                        <span class="material-symbols-rounded" style="transform: scale(1.2);">
+                                            chevron_right
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="arrive-station">
+                                <h3>Stafford</h3>
+                                <div class="travel-details">
+                                    <span class="platform small" id="destination-platform">Plat. 3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress"></div>
+                        <div class="times">
+                            <div class="outbound-time">
+                                <span class="time" id="outbound-depart-time-value">13:46</span>
+                                <div class="time-disclaimer">
+                                    <span class="ontime" id="outbound-depart-ontime">
+                                        On time
+                                    </span>
+                                    <span class="late-time display-none" id="outbound-new-depart-time-value">
+                                        13:52
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="arrive-time">
+                                <span class="time" id="outbound-arrive-time-value">15:30</span>
+                                <div class="time-disclaimer">
+                                    <span class="ontime" id="outbound-arrive-ontime">
+                                        On time
+                                    </span>
+                                    <span class="late-time display-none" id="outbound-new-arrive-time-value">
+                                        15:35
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="outlined onclick-load">View stops</button>
+                    <br>
+                    <div class="weak small">*All times are in local time.</div>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="tab-content" data-tab="return">
+                    <h2 class="title">
+                        <span class="return-origin">Stafford</span>
+                        <div class="arr-wrapper">
+                            <img src="arrow.png" alt="→" width="18px">
+                        </div>
+                        <span class="return-destination">London Euston</span>
+                    </h2>
+                    <p class="small-space"></p>
+                    <!--                     <span class="weak same-line">
+                        <span class="material-symbols-rounded">
+                            calendar_today
+                        </span>
+                        <span class="return-date">Thu, 11 Dec</span> <span class="super-weak separator">|</span> <span
+                            class="return-duration">1h 50m,</span> direct
+                    </span> -->
+                    <div class="ticket-btn-wrapper">
+                        <center>
+                            <button class="ticket-btn view-ticket">View return eTicket(s)</button>
+                            <div class="weak">
+                                <p class="margin-top">
+                                    How to use E-ticket(s)
+                                    <span class="thin material-symbols-rounded translate-down onclick-load">
+                                        info
+                                    </span>
+                                </p>
+                            </div>
+                        </center>
+                    </div>
+
+                    <center>
+                        <div class="dotted-hr"></div>
+                    </center>
+
+                    <!-- Journey info -->
+                    <div class="same-line space-between">
+                        <h3 class="small-title">Journey Info</h3>
+                        <div class="link right" id="share-btn3">
+                            <div class="share-wrapper">
+                                <img src="share.jpg" alt="share" width="13px">
+                            </div>
+                            Share
+                        </div>
+                    </div>
+
+                    <!-- Departure time has changed -->
+                    <div class="time-changed onclick-load return-time-changed">
+                        <div class="red-text top">
+                            <span class="material-symbols-rounded warning">
+                                warning
+                            </span>
+                        </div>
+                        <div>
+                            <h4>Departure / Arrival time changed</h4>
+                            <div class="weak">
+                                The train time has changed. Please check the updated schedule.
+                            </div>
+                        </div>
+                        <div class="forward-arrow onclick-load">
+                            <span class="material-symbols-rounded smaller weak">
+                                chevron_right
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Station and facilities map button -->
+                    <div class="card">
+                        <h3>1 Month Return</h3>
+                        <span class="weak">Valid until <span id="valid-until">Sat, 17 Jan 2026</span></span>
+                    </div>
+
+                    <div class="journey-timeline compact">
+                        <div class="station-info">
+                            <div class="outbound-station" id="return-outbound-station">
+                                <h3 id="timeline-return-origin">Depart Stafford</h3>
+                            </div>
+
+                            <div class="arrive-station" id="return-arrive-station"
+                                style="transform: translateY(-20px) !important;">
+                                <h3 id="timeline-return-destination">Arrive London Euston</h3>
+                            </div>
+                        </div>
+                        <div class="progress"></div>
+                    </div>
+                    <span class="weak">*All times are in local time.</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="booking-summary">
+            <div class="same-line">
+                <h2>Booking Summary</h2>
+                <span id="ticket-price">£35.45</span>
+                <span class="info-icon icon weak">
+                    <span class="material-symbols-outlined">
+                        info
+                    </span>
+                </span>
+            </div>
+            <span class="weak">Booking ID: [ER-500, internal server error]</span>
+
+            <br>
+
+            <div class="row">
+                <span class="material-symbols-rounded">
+                    person
+                </span> <span>1 Passenger</span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row">
+                <span class="material-symbols-rounded">
+                    mail
+                </span>
+                <span>
+                    <span id="email">jack.lecco59@gmail.com</span> <br>
+                    <a href="javascript:void(0)" class="onclick-load link">Resend booking confirmation</a>
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row">
+                <span class="material-symbols-rounded">
+                    confirmation_number
+                </span> <span id="email">Off-Peak Return</span>
+            </div>
+        </div>
+
+        <div id="other-content" style="margin-top: 15px; overflow: hidden;">
+            <img src="other-content.png" alt="ERR404" style="width:100%;">
+        </div>
+
+        <div class="section-card">
+            <h3>Manage my booking</h3>
+
+            <div class="row onclick-load">
+                <span class="material-symbols-rounded">
+                    payment_card
+                </span>
+                <span id="email">Refund</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row onclick-load">
+                <span class="material-symbols-rounded">
+                    schedule
+                </span>
+                <span id="email">Change</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row onclick-load">
+                <span class="material-symbols-rounded">
+                    shield
+                </span>
+                <span id="email">Delay repay</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row onclick-load">
+                <span class="material-symbols-rounded">
+                    confirmation_number
+                </span>
+                <span id="email">Expense receipt</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row onclick-load">
+                <span class="material-symbols-rounded">
+                    shield
+                </span>
+                <span id="email">Price Match Promise</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+        </div>
+
+        <div class="section-card">
+            <h3>Help & FAQs</h3>
+
+            <div class="row onclick-load">
+                <span id="email">What are split tickets?</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row onclick-load">
+                <span id="email">Great British Rail Sale</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row onclick-load">
+                <span id="email">"Free Change & Refund" Rules</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <div class="row onclick-load not-last">
+                <span id="email">How to use a Railcard?</span>
+                <span class="material-symbols-rounded float-right">
+                    chevron_right
+                </span>
+            </div>
+
+            <p class="hr"></p>
+
+            <button class="outlined blue onclick-load">
+                <span class="material-symbols-rounded down">
+                    headset_mic
+                </span>
+                Customer Support
+            </button>
+        </div>
+
+        <div style="margin-top: 25px; font-size: smaller; color: #4c505d;">
+            <center>
+                <div>
+                    - <b>Travel further for less with TrainPal</b> -
+                </div>
+                <div>
+                    Money Saving Expert | Greener travel
+                </div>
+            </center>
+        </div>
+    </div>
+
+
+    <div class="fixed near-bottom dark-blue-bg hidden">
+        <span>Rate us now</span>
+        <span class="down-arrow-icon icon" id="rate-arrow">
+            <span class="material-symbols-rounded">
+                expand_more
+            </span>
+        </span>
+    </div>
+    <div class="jant fixed near-bottom very-dark-blue-bg">
+        <span class="material-symbols-rounded close-btn">
+            close_small
+        </span>
+        <div style="display: flex; flex-direction: row; gap: 14px;">
+            <div class="img-placeholder">
+                <center>
+                    <img src="euro-jant.jpg" alt="Eiffel tower" width="62px" style="transform: translate(0px, -2px)">
+                </center>
+            </div>
+            <div style="position: relative; top: -2px">
+                <p>
+                    <span><b>Fancy a Euro-jaunt?</b></span>
+                </p>
+                <p>
+                    <span class="thin">Explore Europe in a greener way</span>
+                </p>
+            </div>
+        </div>
+        <div class="content-center">
+            <button class="inline-btn yellow-pill onclick-load">go</button>
+        </div>
+    </div>
+
+    <div id="loader-screen" class="fullscreen fixed" style="display: none;">
+        <div class="loader-container">
+            <div class="dual-ring"></div>
+        </div>
+        <span class="material-symbols-rounded close-btn history-back larger-icon" id="close-loader-btn">
+            chevron_left
+        </span>
+    </div>
+
+    <div id="settings-screen" class="fullscreen fixed" style="display: none;">
+        <div id="settings-header">
+            <div id="settings-back-btn" class="settings-nav-btn history-back">
+                <span class="material-symbols-rounded bold larger-icon">
+                    chevron_left
+                </span>
+            </div>
+            <h2 id="settings-title">Settings</h2>
+        </div>
+
+        <div id="settings-content">
+            <div class="settings-section">
+                <h3>Outbound Journey</h3>
+                <div class="settings-group">
+                    <label for="outbound-origin">Origin:</label>
+                    <input type="text" id="outbound-origin" class="settings-input" placeholder="E.g., London Euston">
+                </div>
+                <div class="settings-group">
+                    <label for="outbound-destination">Destination:</label>
+                    <input type="text" id="outbound-destination" class="settings-input" placeholder="E.g., Stafford">
+                </div>
+                <div class="settings-group">
+                    <label for="outbound-date">Date:</label>
+                    <input type="date" id="outbound-date" class="settings-input">
+                </div>
+                <div class="settings-group">
+                    <label for="outbound-depart-time">Departure time:</label>
+                    <input type="time" id="outbound-depart-time" class="settings-input">
+                </div>
+                <div class="settings-group">
+                    <label for="outbound-arrive-time">Arrival time:</label>
+                    <input type="time" id="outbound-arrive-time" class="settings-input">
+                </div>
+                <div class="settings-group">
+                    <label for="end-station-setting">End station (not yours, the actual final station):</label>
+                    <input type="text" id="end-station-setting" class="settings-input" placeholder="E.g., Crewe">
+                </div>
+                <div class="settings-group">
+                    <label for="seat-info-setting">Seat info:</label>
+                    <input type="text" id="seat-info-setting" class="settings-input"
+                        placeholder="E.g., Standard, sit in any available seat">
+                </div>
+
+                <div class="settings-group">
+                    <label for="seat-info-setting">Origin platform:</label>
+                    <input type="text" id="origin-platform-setting" class="settings-input" placeholder="E.g., 12">
+                </div>
+                <div class="settings-group">
+                    <label for="seat-info-setting">Destination platform:</label>
+                    <input type="text" id="destination-platform-setting" class="settings-input" placeholder="E.g., 3">
+                </div>
+
+                <div class="settings-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="show-time-changed-outbound">
+                        <span class="checkmark"></span>
+                        Show departure/arrival time changed warning
+                    </label>
+                    New depart time: <input type="time" id="outbound-new-depart-time"><br>
+                    New arrive time: <input type="time" id="outbound-new-arrive-time">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Return Journey</h3>
+                <div class="settings-group">
+                    <label for="return-origin">Origin:</label>
+                    <input type="text" id="return-origin" class="settings-input" placeholder="e.g., Stafford">
+                </div>
+                <div class="settings-group">
+                    <label for="return-destination">Destination:</label>
+                    <input type="text" id="return-destination" class="settings-input" placeholder="e.g., London Euston">
+                </div>
+                <div class="settings-group">
+                    <label for="return-date">Date:</label>
+                    <input type="date" id="return-date" class="settings-input">
+                </div>
+                <div class="settings-group">
+                    <label for="return-depart-time">Departure Time:</label>
+                    <input type="time" id="return-depart-time" class="settings-input">
+                </div>
+                <div class="settings-group">
+                    <label for="return-arrive-time">Arrival Time:</label>
+                    <input type="time" id="return-arrive-time" class="settings-input">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Other options</h3>
+                <div class="settings-group">
+                    <label for="ticket-price-input">Ticket price in GBP:</label>
+                    <input type="number" id="ticket-price-input" class="settings-input" placeholder="e.g., 35.45">
+                </div>
+                <div class="settings-group">
+                    <label for="email-input">Your email (to display):</label>
+                    <input type="text" id="email-input" class="settings-input"
+                        placeholder="Enter your email for visual purposes only">
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button id="save-settings-btn" class="save-btn">Save Settings</button>
+                <button id="reset-settings-btn" class="reset-btn">Reset to Default</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="eticket-screen" class="fullscreen fixed" style="display: none;">
+        <div id="eticket-header">
+            <div id="eticket-back-btn" class="eticket-nav-btn history-back">
+                <span class="material-symbols-rounded bold larger-icon">
+                    chevron_left
+                </span>
+            </div>
+            <h2 id="eticket-title">E-ticket (1/1)</h2>
+            <div id="eticket-refresh-btn" class="eticket-nav-btn">
+                <span class="material-symbols-rounded bold larger-icon">
+                    refresh
+                </span>
+            </div>
+        </div>
+
+        <div id="eticket-content">
+            <div id="eticket-loader" class="eticket-loader-container">
+                <div class="dual-ring"></div>
+            </div>
+
+            <div id="eticket-failed" class="eticket-failed-container" style="display: none;">
+                <img src="ticket-failed.jpg" alt="Ticket failed to load" class="failed-ticket-image">
+                <p>
+                    <span class="weak">Your network connection is unstable</span>
+                </p>
+                <p>
+                    <span class="weak">Check your connection and re-try (ERR-NN500T)</span>
+                </p>
+                <button id="eticket-retry-btn" class="retry-btn">Retry</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="buy-box" class="fullscreen fixed">
+
+        <!-- <div class="buy-loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div> -->
+        <div class="buy-loader">
+            <div class="dual-ring"></div>
+        </div>
+
+
+
+
+        <span class="material-symbols-rounded close-btn bold larger-icon history-back" id="close-buybox-btn">
+            chevron_left
+        </span>
+
+        <div class="buy-scroll">
+
+            <!-- HERO -->
+            <div class="buy-hero">
+                <div class="discount-badge">
+                    <div class="discount-value">3%</div>
+                    <div class="discount-label">OFF</div>
+                </div>
+
+                <h2 class="buy-title">
+                    TrainPal Card <span class="tp-pill">TP</span>
+                </h2>
+
+                <ul class="buy-benefits">
+                    <li>3% off every train booking</li>
+                    <li>Can be combined with Railcards and promo codes</li>
+                    <li>Discounts are automatically applied</li>
+                </ul>
+            </div>
+
+            <!-- PLANS -->
+            <div class="buy-plans">
+                <h3>Select your plan</h3>
+
+                <label class="buy-plan active">
+                    <input type="radio" name="plan" checked>
+                    <div class="plan-text">
+                        <b>Monthly</b>
+                        <span>Max. 10 bookings per month</span>
+                    </div>
+                    <div class="plan-price">
+                        <span class="now">£3</span>
+                        <span class="old">£5</span>
+                    </div>
+                </label>
+
+                <label class="buy-plan">
+                    <input type="radio" name="plan">
+                    <div class="plan-text">
+                        <b>Annual</b>
+                        <span>Max. 70 bookings per year</span>
+                    </div>
+                    <div class="plan-price">
+                        <span class="now">£20</span>
+                        <span class="old">£35</span>
+                    </div>
+                </label>
+            </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="buy-cta">
+            <button class="buy-btn onclick-load" id="buy-trainpal-card">Proceed to purchase</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
